@@ -15,7 +15,7 @@ const XrContainer = () => {
                 resize={{ scroll: true, debounce: { scroll: 50, resize: 0 } }}
             >
                 <XR store={store}>
-                    <XrCube position={[0, 0, -3]} />
+                    <XrCube position={[0, 0, -3]} fileId="stair" />
                 </XR>
             </Canvas>
             <button className="_hit_btn" onClick={() => store.enterAR()}>

@@ -2,7 +2,7 @@ import { OrbitControls, useGLTF } from '@react-three/drei';
 import { useRef } from 'react';
 import * as THREE from 'three';
 
-const XrCube = ({ position }: { position: [number, number, number] }) => {
+const XrCube = ({ position, fileId }: { position: [number, number, number]; fileId: string }) => {
     const cubeRef = useRef<THREE.Group>(null);
 
     const ModelFromS3 = ({ url }: { url: string }) => {
@@ -11,7 +11,7 @@ const XrCube = ({ position }: { position: [number, number, number] }) => {
         return <primitive object={gltf.scene} scale={0.45} />;
     };
 
-    const s3Url = 'https://elite-furniture.s3.eu-north-1.amazonaws.com/3D/stair.gltf';
+    const s3Url = `https://elite-furniture.s3.eu-north-1.amazonaws.com/3D/${fileId}.gltf`;
     // const s3Url = 'https://elite-furniture.s3.eu-north-1.amazonaws.com/3D/plants.glb';
 
     return (
