@@ -2,13 +2,21 @@ import { OrbitControls, useGLTF } from '@react-three/drei';
 import { useRef } from 'react';
 import * as THREE from 'three';
 
-const XrCube = ({ position, fileId }: { position: [number, number, number]; fileId: string }) => {
+const XrCube = ({
+    position,
+    fileId,
+    scale,
+}: {
+    position: [number, number, number];
+    fileId: string;
+    scale: number;
+}) => {
     const cubeRef = useRef<THREE.Group>(null);
 
     const ModelFromS3 = ({ url }: { url: string }) => {
         const gltf = useGLTF(url); // Load the GLTF/GLB model
 
-        return <primitive object={gltf.scene} scale={.75} />;
+        return <primitive object={gltf.scene} scale={scale} />;
     };
 
     const s3Url = `https://renomate-3d.s3.eu-north-1.amazonaws.com/3d/${fileId}.glb`;
