@@ -8,7 +8,7 @@ const XrCube = ({ position, fileId }: { position: [number, number, number]; file
     const ModelFromS3 = ({ url }: { url: string }) => {
         const gltf = useGLTF(url); // Load the GLTF/GLB model
 
-        return <primitive object={gltf.scene} scale={0.45} />;
+        return <primitive object={gltf.scene} scale={.75} />;
     };
 
     const s3Url = `https://renomate-3d.s3.eu-north-1.amazonaws.com/3d/${fileId}.glb`;
