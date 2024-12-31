@@ -11,8 +11,7 @@ const XrCube = ({ position, fileId }: { position: [number, number, number]; file
         return <primitive object={gltf.scene} scale={0.45} />;
     };
 
-    const s3Url = `https://elite-furniture.s3.eu-north-1.amazonaws.com/3D/${fileId}.gltf`;
-    // const s3Url = 'https://elite-furniture.s3.eu-north-1.amazonaws.com/3D/plants.glb';
+    const s3Url = `https://renomate-3d.s3.eu-north-1.amazonaws.com/3d/${fileId}.glb`;
 
     return (
         <group ref={cubeRef} position={position}>
