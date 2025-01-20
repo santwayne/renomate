@@ -13,6 +13,8 @@ const XrContainer = () => {
     const [isXr, setIsXr] = useState(false);
     const [scale, setScale] = useState(3);
     const productName = searchParams.get('name');
+    const status = searchParams.get('status');
+    console.log('🚀 ~ XrContainer ~ status:', status);
 
     const arInitialized = useRef(false); // Ref to prevent redundant re-initializations
 
@@ -64,7 +66,11 @@ const XrContainer = () => {
                     </XR>
                 </Canvas>
             </div>
-            <div className="flex justify-center items-center mt-10">
+            <div
+                className={`flex justify-center items-center mt-10 ${
+                    status === 'false' || status === null ? 'hidden' : ''
+                }`}
+            >
                 {!isXr ? (
                     <button
                         className="lg:hidden w-fit h-fit px-4 py-2 rounded-md bg-amber-500 text-white font-medium hover:scale-105 hover:transform hover:transition-colors hover:bg-amber-400"
