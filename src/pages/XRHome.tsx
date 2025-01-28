@@ -10,7 +10,7 @@ const store = createXRStore();
 const XrContainer = () => {
     const { id } = useParams();
 
-    const [scale] = useState(5);
+    const [scale] = useState(3);
 
     return (
         <>
