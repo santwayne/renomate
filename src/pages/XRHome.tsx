@@ -17,7 +17,12 @@ const XrContainer = () => {
             <div className="p-4 flex justify-center h-[450px] w-full border-2">
                 <Canvas resize={{ scroll: true, debounce: { scroll: 50, resize: 0 } }}>
                     <XR store={store}>
-                        <XrCube position={[0, -3, 0]} scale={scale} fileId={id ?? ''} />
+                        <XrCube
+                            position={[0, -3, 0]}
+                            scale={scale}
+                            fileId={id ?? ''}
+                            format={'glb'}
+                        />
                     </XR>
                 </Canvas>
             </div>

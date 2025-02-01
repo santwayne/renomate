@@ -14,7 +14,7 @@ const XrContainer = () => {
     const [scale, setScale] = useState(3);
     const productName = searchParams.get('name');
     const status = searchParams.get('status');
-    console.log('🚀 ~ XrContainer ~ status:', status);
+    const format = searchParams.get('format');
 
     const arInitialized = useRef(false); // Ref to prevent redundant re-initializations
 
@@ -62,6 +62,7 @@ const XrContainer = () => {
                             position={[0, -0.5, isXr ? -1.5 : 0]}
                             scale={isXr ? scale : 2}
                             fileId={id ?? ''}
+                            format={format ?? 'glb'}
                         />
                     </XR>
                 </Canvas>
