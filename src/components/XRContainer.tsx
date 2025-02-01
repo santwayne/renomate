@@ -30,7 +30,7 @@ const XrCube = ({
     const ImageFromS3 = ({ url }: { url: string }) => {
         const texture = useLoader(THREE.TextureLoader, url); // Load PNG texture
         return (
-            <mesh scale={[scale, scale, 1]}>
+            <mesh scale={[.75, .5, .75]}>
                 <planeGeometry args={[5, 5]} />
                 <meshBasicMaterial map={texture} transparent />
             </mesh>
@@ -39,7 +39,11 @@ const XrCube = ({
 
     return (
         <group ref={cubeRef} position={position}>
-            <OrbitControls enableZoom={true} zoomSpeed={2} minDistance={5} maxDistance={10} />
+            {format === 'png' ? (
+                ''
+            ) : (
+                <OrbitControls enableZoom={true} zoomSpeed={2} minDistance={5} maxDistance={10} />
+            )}
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 5, 5]} intensity={1} />
 

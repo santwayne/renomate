@@ -59,7 +59,11 @@ const XrContainer = () => {
                 <Canvas resize={{ scroll: true, debounce: { scroll: 50, resize: 0 } }}>
                     <XR store={store}>
                         <XrCube
-                            position={[0, -0.5, isXr ? -1.5 : 0]}
+                            position={[
+                                0,
+                                format === 'png' ? 1 : -0.5,
+                                isXr ? (format === 'png' ? -4 : 1.5) : 0,
+                            ]}
                             scale={isXr ? scale : 2}
                             fileId={id ?? ''}
                             format={format ?? 'glb'}
