@@ -1,7 +1,7 @@
-import { OrbitControls, useGLTF } from '@react-three/drei';
-import { useRef } from 'react';
+import { useGLTF } from '@react-three/drei';
+import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
-import { useLoader } from '@react-three/fiber';
+import { useLoader, useFrame, useThree } from '@react-three/fiber';
 
 const XrCube = ({
     position,
@@ -15,35 +15,36 @@ const XrCube = ({
     format: string;
 }) => {
     const cubeRef = useRef<THREE.Group>(null);
+    const { camera } = useThree(); // Get the current camera
 
     const s3Url = `https://renomate-3d.s3.eu-north-1.amazonaws.com/3d/${fileId}.${
         format === 'png' ? format : 'glb'
     }`;
 
-    // Function to load a 3D model
     const ModelFromS3 = ({ url }: { url: string }) => {
-        const gltf = useGLTF(url); // Load the GLTF/GLB model
+        const gltf = useGLTF(url);
         return <primitive object={gltf.scene} scale={scale} />;
     };
 
-    // Function to load a PNG image
     const ImageFromS3 = ({ url }: { url: string }) => {
-        const texture = useLoader(THREE.TextureLoader, url); // Load PNG texture
+        const texture = useLoader(THREE.TextureLoader, url);
         return (
-            <mesh scale={[.75, .5, .75]}>
+            <mesh scale={[0.5, 0.5, 0.5]}>
                 <planeGeometry args={[5, 5]} />
                 <meshBasicMaterial map={texture} transparent />
             </mesh>
         );
     };
+    useFrame(() => {
+        if (cubeRef.current) {
+            cubeRef.current.position.copy(camera.position);
+            cubeRef.current.quaternion.copy(camera.quaternion);
+            cubeRef.current.translateZ(-5); 
+        }
+    });
 
     return (
         <group ref={cubeRef} position={position}>
-            {format === 'png' ? (
-                ''
-            ) : (
-                <OrbitControls enableZoom={true} zoomSpeed={2} minDistance={5} maxDistance={10} />
-            )}
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 5, 5]} intensity={1} />
 
