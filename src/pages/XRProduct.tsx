@@ -6,7 +6,11 @@ import { useEffect, useState, useRef } from 'react';
 import { createXRStore } from '@react-three/xr';
 import ImageXrCube from '../components/ImageXRContainer';
 
-const store = createXRStore(); // Ensure the store is created outside the component
+const store = createXRStore({
+    hitTest: true,
+    depthSensing:true,
+    
+});
 
 const XrContainer = () => {
     const { id } = useParams();
@@ -26,7 +30,7 @@ const XrContainer = () => {
                 setScale(4);
             } else {
                 // Mobile screen
-                setScale(0.5);
+                setScale(0.6);
             }
         };
 

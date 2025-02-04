@@ -22,7 +22,7 @@ const XrCube = ({
 
     return (
         <group ref={cubeRef} position={position}>
-            <OrbitControls enableZoom={true} zoomSpeed={2} minDistance={5} maxDistance={10} />
+            <OrbitControls enableZoom={true} zoomSpeed={1} minDistance={5} maxDistance={10} />
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 5, 5]} intensity={1} />
             <ModelFromS3 url={s3Url} />
