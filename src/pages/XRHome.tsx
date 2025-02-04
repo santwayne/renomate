@@ -21,7 +21,6 @@ const XrContainer = () => {
                             position={[0, -3, 0]}
                             scale={scale}
                             fileId={id ?? ''}
-                            format={'glb'}
                         />
                     </XR>
                 </Canvas>
