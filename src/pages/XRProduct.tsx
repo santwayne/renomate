@@ -4,6 +4,7 @@ import { XR } from '@react-three/xr';
 import XrCube from '../components/XRContainer';
 import { useEffect, useState, useRef } from 'react';
 import { createXRStore } from '@react-three/xr';
+import ImageXrCube from '../components/ImageXRContainer';
 
 const store = createXRStore(); // Ensure the store is created outside the component
 
@@ -58,16 +59,15 @@ const XrContainer = () => {
             <div className="p-4 flex justify-center h-[70vh] w-screen">
                 <Canvas resize={{ scroll: true, debounce: { scroll: 50, resize: 0 } }}>
                     <XR store={store}>
-                        <XrCube
-                            position={[
-                                0,
-                                format === 'png' ? 1 : -0.5,
-                                isXr ? (format === 'png' ? -4 : 1.5) : 0,
-                            ]}
-                            scale={isXr ? scale : 2}
-                            fileId={id ?? ''}
-                            format={format ?? 'glb'}
-                        />
+                        {format === 'png' ? (
+                            <ImageXrCube position={[0, 1, isXr ? -4 : 0]} fileId={id ?? ''} />
+                        ) : (
+                            <XrCube
+                                position={[0, -0.35, isXr ? -1.75 : 0]}
+                                scale={isXr ? scale : 2}
+                                fileId={id ?? ''}
+                            />
+                        )}
                     </XR>
                 </Canvas>
             </div>
